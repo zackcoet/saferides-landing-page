@@ -53,6 +53,32 @@
             }
         }
     </style>
+    <script>
+        function toggleInsurance(section) {
+            const content = document.getElementById(`content-${section}`);
+            const icon = document.getElementById(`icon-${section}`);
+            
+            // Close all other sections
+            const allContents = document.querySelectorAll('[id^="content-"]');
+            const allIcons = document.querySelectorAll('[id^="icon-"]');
+            
+            allContents.forEach(content => {
+                if (content.id !== `content-${section}`) {
+                    content.classList.add('hidden');
+                }
+            });
+            
+            allIcons.forEach(icon => {
+                if (icon.id !== `icon-${section}`) {
+                    icon.classList.remove('rotate-180');
+                }
+            });
+            
+            // Toggle current section
+            content.classList.toggle('hidden');
+            icon.classList.toggle('rotate-180');
+        }
+    </script>
 </head>
 <body class="bg-gray-50 text-gray-800">
 
@@ -65,7 +91,9 @@
                 <a href="#what-is-saferides" class="text-gray-700 hover:text-royal-blue font-semibold transition-colors rounded-lg p-2 hover:bg-gray-100">What is SafeRides</a>
                 <a href="#about-us" class="text-gray-700 hover:text-royal-blue font-semibold transition-colors rounded-lg p-2 hover:bg-gray-100">About Us</a>
                 <a href="#about-founder" class="text-gray-700 hover:text-royal-blue font-semibold transition-colors rounded-lg p-2 hover:bg-gray-100">Our Founder</a>
+                <a href="#insurance" class="text-gray-700 hover:text-royal-blue font-semibold transition-colors rounded-lg p-2 hover:bg-gray-100">Insurance</a>
                 <a href="#waiting-list" class="text-gray-700 hover:text-royal-blue font-semibold transition-colors rounded-lg p-2 hover:bg-gray-100">Waiting List</a>
+                <a href="#privacy" class="text-gray-700 hover:text-royal-blue font-semibold transition-colors rounded-lg p-2 hover:bg-gray-100">Privacy</a>
                 <a href="#contact-us" class="text-gray-700 hover:text-royal-blue font-semibold transition-colors rounded-lg p-2 hover:bg-gray-100">Contact Us</a>
             </div>
         </div>
@@ -130,6 +158,77 @@
         </div>
     </section>
 
+    <section id="insurance" class="full-section bg-gray-50 py-16 md:py-24 px-4">
+        <div class="container mx-auto max-w-5xl">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl md:text-5xl font-bold text-royal-blue-dark mb-4">Insurance to Help Protect You</h2>
+                <p class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
+                    Whether you're logged on or actively driving, SafeRides ensures the right protection is in place for you and your riders.
+                </p>
+            </div>
+
+            <div class="bg-white rounded-xl shadow-lg border-4 border-royal-blue-light p-6 md:p-8">
+                <div class="space-y-6">
+                    <div class="border-b border-gray-200 pb-6">
+                        <button onclick="toggleInsurance('offline')" class="w-full text-left text-xl md:text-2xl font-semibold text-royal-blue-dark hover:text-royal-blue transition-colors focus:outline-none flex justify-between items-center">
+                            Coverage When You're Offline
+                            <svg id="icon-offline" class="w-6 h-6 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div id="content-offline" class="hidden mt-4 text-gray-700 text-lg leading-relaxed">
+                            Your personal auto insurance covers you when offline. To drive with SafeRides, you must maintain personal insurance at minimum state limits.
+                        </div>
+                    </div>
+
+                    <div class="border-b border-gray-200 pb-6">
+                        <button onclick="toggleInsurance('online')" class="w-full text-left text-xl md:text-2xl font-semibold text-royal-blue-dark hover:text-royal-blue transition-colors focus:outline-none flex justify-between items-center">
+                            Coverage When You're Online and Available
+                            <svg id="icon-online" class="w-6 h-6 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div id="content-online" class="hidden mt-4 text-gray-700 text-lg leading-relaxed">
+                            When you're online and waiting for a trip, SafeRides provides limited liability:
+                            <ul class="list-disc list-inside mt-3 space-y-1">
+                                <li>$50,000 per person / $100,000 per accident for injuries</li>
+                                <li>$25,000 in property damage coverage</li>
+                            </ul>
+                            <p class="mt-3">Depending on your state, SafeRides may offer additional protections.</p>
+                        </div>
+                    </div>
+
+                    <div class="border-b border-gray-200 pb-6">
+                        <button onclick="toggleInsurance('trip')" class="w-full text-left text-xl md:text-2xl font-semibold text-royal-blue-dark hover:text-royal-blue transition-colors focus:outline-none flex justify-between items-center">
+                            Coverage When You're on a Trip
+                            <svg id="icon-trip" class="w-6 h-6 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div id="content-trip" class="hidden mt-4 text-gray-700 text-lg leading-relaxed">
+                            Once you've accepted a ride, you're covered by:
+                            <ul class="list-disc list-inside mt-3 space-y-1">
+                                <li>$1M in liability coverage</li>
+                                <li>Physical damage to your car (with a $2,500 deductible) if you have comprehensive and collision</li>
+                            </ul>
+                            <p class="mt-3">Additional medical and injury protections may apply based on your location.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-12">
+                <div class="bg-royal-blue-light p-6 md:p-8 rounded-xl shadow-lg border-4 border-royal-blue-light">
+                    <h3 class="text-2xl md:text-3xl font-bold text-royal-blue-dark mb-4">Ready to Drive with Confidence?</h3>
+                    <p class="text-lg md:text-xl text-gray-700 mb-6">Join SafeRides and experience the peace of mind that comes with comprehensive insurance coverage.</p>
+                    <a href="#waiting-list" class="inline-block bg-royal-blue text-white font-bold py-4 px-8 rounded-lg hover:bg-royal-blue-dark transition-colors shadow-md text-lg">
+                        Join the Waiting List
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section id="waiting-list" class="full-section bg-royal-blue-light py-8 md:py-24 px-2 md:px-4">
         <div class="container mx-auto max-w-2xl md:max-w-4xl text-center">
             <div class="bg-white p-4 md:p-8 rounded-xl shadow-lg mb-8 md:mb-12 border-4 border-royal-blue-light flex flex-col items-center">
@@ -143,11 +242,78 @@
                     <summary class="text-lg md:text-xl font-semibold text-royal-blue-dark cursor-pointer hover:text-royal-blue transition-colors">
                         Terms and Conditions
                     </summary>
-                    <div class="mt-4 text-gray-700 text-left">
-                        <!-- Content will be added here -->
-                        <p>Terms and conditions content will be added here.</p>
+                    <div class="mt-4 text-gray-700 text-left whitespace-pre-wrap max-h-[80vh] overflow-y-auto pr-2 text-sm">
+Table of Contents
+1. CONTRACTUAL RELATIONSHIP; TERMINATION; AND MODIFICATION	3
+TERMINATION.	3
+MODIFICATION.	3
+2. ARBITRATION AGREEMENT	4
+(A) AGREEMENT TO BINDING ARBITRATION BETWEEN YOU AND SAFERIDES™.	5
+(1) COVERED DISPUTES:	5
+(2) CLASS ACTION WAIVER:	5
+(3) MASS ACTIONS:	6
+a. Mass Action Waiver:	6
+b. Dispute Procedure:	6
+c. Batching:	7
+(4) DELEGATION CLAUSE:	9
+(5) APPLICATION TO THIRD PARTIES:	10
+(a) Binding effect on 3rd parties	10
+(b) Exceptions to Arbitration	10
+(c) Rules and Governing Law.	11
+(d) Process.	12
+(e) Location.	14
+(f) Offers of Judgment.	14
+(g) Arbitrator's Decision.	14
+(h) Fees.	15
+(I)Severability and Survival.	16
+3. THE SERVICES	16
+APP STORES.	17
+OWNERSHIP; LICENSE; AND RESTRICTIONS.	18
+4. THIRD-PARTY SERVICES (INCLUDING AUTONOMOUS VEHICLES) AND CONTENT	19
+5. ACCESSING THE SERVICES	20
+6. USER CONDUCT AND REQUIREMENTS; COMMUNICATIONS; AND USER CONTENT	21
+7. PAYMENT	23
+REFUNDS.	26
+PROMOTIONAL OFFERS.	26
+GRATUITY.	26
+DAMAGE, CLEANING, LOST AND FOUND, AND CHARGES FOR VIOLATION OF TERMS.	27
+8. DISCLAIMERS; LIMITATION OF LIABILITY; AND INDEMNITY	27
+9. OTHER PROVISIONS	30
+
+IMPORTANT: PLEASE BE ADVISED THAT BY AGREEING TO THESE TERMS YOU ARE WAIVING YOUR RIGHT TO SEEK RELIEF IN A COURT OF LAW AND WAIVING YOUR RIGHT TO HAVE A JURY TRIAL ON YOUR CLAIMS.
+PLEASE READ THESE TERMS OF SERVICE CAREFULLY AS THEY CONTAIN PROVISIONS THAT GOVERN HOW YOU CAN BRING CLAIMS BETWEEN YOU AND SAFERIDES™, INCLUDING THE ARBITRATION AGREEMENT IN SECTION 2 BELOW. THE ARBITRATION AGREEMENT REQUIRES YOU TO RESOLVE ALL DISPUTES WITH SAFERIDES™ ON AN INDIVIDUAL BASIS AND, WITH LIMITED EXCEPTIONS, THROUGH FINAL AND BINDING ARBITRATION. THESE TERMS OF SERVICE OUTLINE HOW SUCH CLAIMS ARE RESOLVED, INCLUDING, WITHOUT LIMITATION, ANY CLAIMS THAT AROSE OR WERE ASSERTED BEFORE THE EFFECTIVE DATE OF THESE TERMS OF SERVICE. BY AGREEING TO THESE TERMS OF SERVICE, YOU EXPRESSLY ACKNOWLEDGE THAT YOU HAVE READ AND UNDERSTOOD ALL OF THEM AND HAVE TAKEN TIME TO CONSIDER THE CONSEQUENCES OF THIS IMPORTANT DECISION.
+These Terms of Service (“Terms of Service”) constitute a legally binding agreement between you and SafeRides™ Technologies, Inc. and its subsidiaries, representatives, affiliates, officers and directors (collectively, “SafeRides™”) governing your use of SafeRides™' personalized, multipurpose, digital marketplace platform (“SafeRides™ Marketplace Platform”) and any related content or services, including but not limited to mobile and/or web-based applications (“Applications” or the “SafeRides™ App,” and together with the SafeRides™ Marketplace Platform, the “Services”).
+Notwithstanding the foregoing, if you choose, now or in the future, to provide transportation (e.g., ride-hailing, ridesharing and commercial transportation), these Terms of Service do not supersede or otherwise impact the enforceability of any agreements you may have with SafeRides™ or its subsidiaries regarding such Third-Party Services (e.g., the Platform Access Agreement, the Technology Services Agreement and/or any similar agreements). To the extent (but only to the extent) any agreement you may have with SafeRides™ regarding Third-Party Services you provide conflicts with these Terms of Service, those agreements (and not these Terms of Service) will prevail with respect to any disputes arising from your provision of Third-Party Services; otherwise, any relevant provisions in these Terms of Service apply.
+1. Contractual Relationship; Termination; and Modification
+In addition to these Terms of Service, your access to, and use of the Services is also governed by the applicable terms found on our website. These include but are not limited to: the Privacy Notice, which describes how we collect, use, and disclose your personal information; the User Generated Content Terms; Community Guidelines; Referral Policies; the ADT Mobile Security Monitoring Terms and SafeRides™' other applicable SafeRides™ standards and policies (including, without limitation, SafeRides™' safety standards, the accessibility policies, and the U.S. Service Animal Policy), which we refer to collectively as the “Supplemental Terms.”
+Collectively, we refer to these Terms of Service and the Supplemental Terms as the “Terms.” These Terms govern your access or use, from within the United States and its territories and possessions, of the Services made available in the United States and its territories and possessions (the “Territory”). If you use the Services in another country, you agree to be subject to SafeRides™' terms of service for that country. In these Terms, the words "including" and "include" mean "including, but not limited to."
+By accessing or using the Services, you confirm your agreement to be bound by these Terms. If you do not agree to these Terms, do not access or use the Services.
+Termination.
+SafeRides™, in its sole discretion, may immediately terminate these Terms or any Services with respect to you, or generally cease offering or deny access to the Services or any portion thereof, at any time for any reason.
+Modification.
+SafeRides™ reserves the right to modify these Terms or its policies relating to the Services at any time, effective upon posting of an updated version of these Terms through the Services or SafeRides™' website. You should regularly review these Terms, as your continued use of the Services after any such changes constitutes your agreement to such changes.
+2. Arbitration Agreement
+By agreeing to these Terms, you agree that you are required to resolve any claim that you may have against SafeRides™ on an individual basis in binding arbitration as set forth in this Arbitration Agreement, and not as a class, collective, coordinated, consolidated, mass and/or representative action. Binding arbitration is a procedure in which a dispute is submitted to one or more arbitrators who make a binding decision on the dispute. In choosing binding arbitration, you and SafeRides™ are opting for a private dispute resolution procedure where you agree to accept the arbitrator's decision as final instead of going to court. You and SafeRides™ are each waiving your right to a jury trial.
+This Arbitration Agreement will preclude you from bringing any class, collective, coordinated, consolidated, mass, and/or representative action against SafeRides™, and also preclude you from participating in or recovering relief in any current or future class, collective, coordinated, consolidated, mass and/or representative action brought against SafeRides™ by someone else—except as provided below in Section 2(a)(3)(c). Thus, the parties agree that the Arbitrator shall not conduct any form of class, collective, coordinated, consolidated, mass, and/or representative arbitration, nor join, coordinate, or consolidate claims of multiple individuals against SafeRides™ in a single proceeding—except as provided below in Section 2(a)(3)(c). For the avoidance of doubt, except as provided below in Section 2(a)(3)(c), this Arbitration Agreement precludes you from bringing or participating in any kind of class, collective, coordinated, consolidated, mass, and/or representative or other kind of group, multi-plaintiff or joint action against SafeRides™, other than participating in a classwide, collective, coordinated, consolidated, mass, and/or representative settlement of claims.
+(a) Agreement to Binding Arbitration Between You and SafeRides™.
+(1) Covered Disputes:
+
+[...TRUNCATED FOR BREVITY...]
                     </div>
                 </details>
+            </div>
+        </div>
+    </section>
+
+    <section id="privacy" class="full-section bg-royal-blue-light py-16 md:py-24 px-4">
+        <div class="container mx-auto max-w-4xl text-center">
+            <h2 class="text-4xl md:text-5xl font-bold mb-12 text-royal-blue-dark">Privacy Policy</h2>
+            <div class="bg-white p-8 rounded-xl shadow-lg mb-12 border-4 border-royal-blue-light">
+                <p class="text-xl font-semibold text-royal-blue-dark mb-4">Your data is used to match rides, enhance safety, and support the service.</p>
+                <p class="text-lg text-gray-700 mb-6">We never sell your personal info and are committed to protecting your privacy. Learn more about how we collect, use, and protect your information.</p>
+                <a href="privacy.html" class="inline-block bg-royal-blue text-white font-bold py-3 px-6 rounded-lg hover:bg-royal-blue-dark transition-colors shadow-md text-lg" aria-label="Read the full Privacy Policy">
+                    Read the full policy →
+                </a>
             </div>
         </div>
     </section>
@@ -199,7 +365,12 @@
     </section>
 
     <footer class="bg-gray-800 text-white py-8 text-center">
-        <p>&copy; 2024 Saferides™. All rights reserved.</p>
+        <div class="container mx-auto px-4">
+            <p class="mb-4">&copy; 2024 Saferides™. All rights reserved.</p>
+            <nav class="flex justify-center space-x-6">
+                <a href="privacy.html" class="text-gray-300 hover:text-white transition-colors underline">Privacy Policy</a>
+            </nav>
+        </div>
     </footer>
 
 </body>
